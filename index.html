@@ -86,8 +86,8 @@
       const en = document.querySelectorAll('.en');
       const da = document.querySelectorAll('.da');
       const de = document.querySelectorAll('.de');
-      en.forEach(el => el.style.display = lang === 'en' ? 'block' : 'none');
       da.forEach(el => el.style.display = lang === 'da' ? 'block' : 'none');
+      en.forEach(el => el.style.display = lang === 'en' ? 'block' : 'none');
       de.forEach(el => el.style.display = lang === 'de' ? 'block' : 'none');
     }
     window.onload = () => switchLanguage('da');
