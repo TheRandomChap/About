@@ -2,29 +2,26 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>About Me</title>
+  <title>About Me - Mathias Andersen</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       line-height: 1.6;
-      background-color: #f4f4f4;
+      background-color: #efd4ae;
       color: #333;
       margin: 0;
       padding: 20px;
     }
     .container {
-      max-width: 800px;
+      max-width: 1000px;
       margin: auto;
-      background: #fff;
+      background: #ffffff;
       padding: 30px;
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
     h1, h2 {
       color: #222;
-    }
-    ul {
-      padding-left: 20px;
     }
     .project {
       margin-bottom: 15px;
@@ -41,60 +38,122 @@
       height: 24px;
       vertical-align: middle;
     }
+    .lang-switcher {
+      text-align: right;
+      margin-bottom: 10px;
+    }
+    .lang-switcher button {
+      padding: 6px 12px;
+      margin-left: 5px;
+      border: none;
+      background: none;
+      cursor: pointer;
+    }
+    .lang-switcher img {
+      width: 32px;
+      height: 24px;
+      vertical-align: middle;
+    }
   </style>
+  <script>
+    function switchLanguage(lang) {
+      const en = document.querySelectorAll('.en');
+      const da = document.querySelectorAll('.da');
+      en.forEach(el => el.style.display = lang === 'en' ? 'block' : 'none');
+      da.forEach(el => el.style.display = lang === 'da' ? 'block' : 'none');
+    }
+    window.onload = () => switchLanguage('en');
+  </script>
 </head>
 <body>
   <div class="container">
-    <h1>Hello, I'm Mathias 👋</h1>
-    <p>
-      English down below
-----------------------------------------------------------------------------------------------------------------------
-
-Hej Mathias, her.
-
-Jeg har 5 års erfaring på arbejdsmarkedet.
-Jeg startede som 12 årig med hundelufter.
-Jeg har så arbejdet med meget forskæligt i gennem tiden, det meste af mit arbejde er dog lavet friviligt i samerbejde med UngHolbæk eller LUCERNA. Gennem mit frivilige arbejde stået i spiden for en del projekter, hvilket har givet mig kompetanencer indenfor, Friviligt arbejde men også givet kompetencer og viden indenfor lederskab af frivilige, og hvordan man kan holde styr på store mængde raf mennesker.
-
-Jeg har gennem de sidste 5 år erfaret mig en masse, men mest bemærkelseværdige er efter jeg begyde at arbejde hos SJF Bank, gennem min tid har jeg til erhvervet mig kompetancer indenfor en masse, mest hardware, men også software og problemløsning,
-
-----------------------------------------------------------------------------------------------------------------------
-
-Hi Mathias, here.
-
-I have 5 years of experience in the labor market.
-I started as a dog walker when I was 12 years old.
-Over the years, I have worked in many different fields, but most of my work has been done voluntarily in collaboration with UngHolbæk or LUCERNA. Through my voluntary work, I have been involved in a number of projects, which has given me skills in voluntary work, as well as skills and knowledge in leadership of volunteers and how to keep track of large numbers of people.
-
-I have learned a lot over the past 5 years, but the most notable is after I started working at SJF Bank, during my time, I have acquired skills in a lot, mostly hardware, but also software and problem solving,
-    </p>
-
-    <h2>What I Do</h2>
-    <p>
-      I work daily with AI, particularly in the context of database technologies, automation, and making data useful
-      through machine learning and intelligent systems.
-    </p>
-
-    <h2>Projects I've Worked On</h2>
-    <div class="project">
-      <strong>AI-Powered Data Insights Tool</strong><br>
-      Developed a system that uses AI to surface insights from large datasets, improving decision-making speed by 40%.
-    </div>
-    <div class="project">
-      <strong>Smart CRM Integration</strong><br>
-      Built an AI assistant to help sales teams extract key trends from customer interaction data.
-    </div>
-    <div class="project">
-      <strong>Database Optimization with ML</strong><br>
-      Applied machine learning techniques to predict and optimize database query performance.
+    <div class="lang-switcher">
+      <button onclick="switchLanguage('en')">
+        <img src="https://flagcdn.com/w40/gb.png" alt="English">
+      </button>
+      <button onclick="switchLanguage('da')">
+        <img src="https://flagcdn.com/w40/dk.png" alt="Dansk">
+      </button>
     </div>
 
-    <h2>Let’s Connect</h2>
-    <p>You can reach me at <a href="mailto:mathiasca0209@gmail.com">your.email@example.com</a></p>
+    <div class="en">
+      <h1>Hello, I'm Mathias Andersen 👋</h1>
+      <p>
+        I’m a passionate and versatile IT Support Specialist with a background that spans both technical expertise and human-centered problem-solving. I bring a unique combination of experience from professional roles and extensive volunteer work and leadership. My strength lies in my ability to stay calm under pressure, learn fast, and continuously improve workflows.
+      </p>
+
+      <h2>Professional Background</h2>
+      <p>
+        I began my career through volunteering, which shaped my work ethics leadership style and my sense of responsibility. My collaboration with organizations such as UngHolbæk and LUCERNA helped me develop an eye for logistics, people management, and structured planning. Since joining SJF Bank as an IT Supporter, I've supported hundreds of users, managed IT infrastructure, and delivered solutions across the company.
+      </p>
+
+      <h2>Projects & Skills</h2>
+      <div class="project">
+        <strong>IT Support & Operations</strong><br>
+        Hands-on experience with setting up, maintaining, and troubleshooting hardware. Developed internal documentation, improved onboarding workflows, and provided technical support in a fast-paced banking environment.
+      </div>
+      <div class="project">
+        <strong>Volunteer Work & Leadership</strong><br>
+        Led and participated in community-based projects, educational programs, and workshops for youth and young adults. Organized and facilitated large events while managing diverse teams of volunteers, fostering motivation and team spirit.
+      </div>
+      <div class="project">
+        <strong>Technical Expertise</strong><br>
+        Skilled in client support tools, hardware setup, hardware troubleshooting both remote and physical and sending packages. Experienced with M365, Teams, SharePoint, and other collaboration platforms.
+      </div>
+      <div class="project">
+        <strong>Soft Skills</strong><br>
+        Exceptional communicator and team player. Known for being a reliable colleague, quick to adapt, and someone who builds trust through consistency and empathy.
+      </div>
+      <p><a href="https://www.linkedin.com/in/mathias-andersen-885ba3248/">Read more about my journey, certifications, and achievements...</a></p>
+      <p>You can reach me at <a href="mailto:Mathiasca0209@gmail.com">Mathiasca0209@gmail.com</a></p>
+      <h2>Let’s Connect!</h2>
+    </div>
+
+    <div class="da" style="display:none">
+      <h1>Hej, jeg er Mathias Andersen 👋</h1>
+      <p>
+        Jeg er en passioneret og alsidig IT-supportspecialist med en baggrund, der spænder over både teknisk ekspertise og menneskecentreret problemløsning. Jeg bringer en unik kombination af erfaring fra professionelle roller og omfattende frivilligt arbejde og lederskab. Min styrke ligger i min evne til at bevare roen under pres, lære hurtigt og løbende forbedre arbejdsgange.
+      </p>
+
+      <h2>Erhvervserfaring</h2>
+      <p>
+        Jeg startede min karriere gennem frivilligt arbejde, hvilket formede min arbejdsetiske lederstil og min ansvarsfølelse. Mit samarbejde med organisationer som UngHolbæk og LUCERNA hjalp mig med at udvikle et øje for logistik, personaleledelse og struktureret planlægning. Siden jeg kom til SJF Bank som IT-supporter, har jeg supporteret hundredvis af brugere, administreret IT-infrastruktur og leveret løsninger på tværs af virksomheden.
+      </p>
+
+      <h2>Projekter & Kompetencer</h2>
+      <div class="project">
+        <strong>IT-support & drift</strong><br>
+        Praktisk erfaring med opsætning, vedligeholdelse og fejlfinding af hardware. Udviklede intern dokumentation, forbedrede onboarding-arbejdsgange og ydede teknisk support i et travlt bankmiljø.
+      </div>
+      <div class="project">
+        <strong>Frivilligarbejde & ledelse</strong><br>
+        Ledede og deltog i lokalsamfundsbaserede projekter, uddannelsesprogrammer og workshops for unge og unge voksne. Organiserede og faciliterede store arrangementer, samtidig med at jeg ledede forskellige teams af frivillige, fremmede motivation og holdånd.
+      </div>
+      <div class="project">
+        <strong>Teknisk kunnen</strong><br>
+        Dygtig i klientsupportværktøjer, hardwareopsætning, hardwarefejlfinding både eksternt og fysisk samt afsendelse af pakker. Erfaring med M365, Teams, SharePoint og andre samarbejdsplatforme.
+      </div>
+      <div class="project">
+        <strong>Bløde værdier</strong><br>
+        Enestående kommunikator og teamplayer. Kendt for at være en pålidelig kollega, hurtig til at tilpasse sig og en person, der opbygger tillid gennem vedholdenhed og empati.
+      </div>
+      <p><a href="https://www.linkedin.com/in/mathias-andersen-885ba3248/">Læs mere om min rejse, certifikater og resultater...</a></p>
+      <p>Du kan kontakte mig på <a href="mailto:mathiasca0209@gmail.com">mathiasca0209@gmail.com</a></p>
+      <h2>Find Mig!</h2>
+   
+    </div>
+
+
+    
     <div class="social-links">
       <a href="https://www.linkedin.com/in/mathias-andersen-885ba3248/" target="_blank">
         <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn">
       </a>
+      <a href="https://l.instagram.com/?u=https%3A%2F%2Finstagram.com%2Fandersen_creative%3Figshid%3DOGQ5ZDc2ODk2ZA%253D%253D%26utm_source%3Dqr%26fbclid%3DPAZXh0bgNhZW0CMTEAAaeNbr0qpi3PpsVatYHoItyWq0ukg51jhf5MRvldTOMXpweHOnZdJgqHQzuU-Q_aem_MU9POe_G2ppRMbi1iVP5lw&e=AT3ar3F9C134yHcpPxiRBr_kyqCuRoMdR69X0QM2DItFrTKHERl5rYgbVnrdgB6RUnKlpVRJEyyzBnugS4OYu-5yUoYJEeQ0aLgOTiA" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/2048px-Instagram_icon.png" alt="Instagram">
+      </a>
+      <a href="mailto:mathiasca0209@gmail.com" target="_blank">
+        <img src="https://static.vecteezy.com/system/resources/previews/020/964/377/non_2x/gmail-mail-icon-for-web-design-free-png.png" alt="Email">
     </div>
   </div>
 </body>
