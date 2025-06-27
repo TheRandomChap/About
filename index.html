@@ -48,21 +48,49 @@
       border: none;
       background: none;
       cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    .lang-switcher button:hover {
+      transform: scale(1.1);
     }
     .lang-switcher img {
       width: 32px;
       height: 24px;
       vertical-align: middle;
     }
+    .skills-section {
+      margin-top: 20px;
+    }
+    .skills-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 10px;
+      list-style: none;
+      padding-left: 0;
+    }
+    .skills-list li {
+      background: #f0f0f0;
+      border-radius: 5px;
+      padding: 8px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      border: 1px solid #d0d0d0;
+      box-sizing: border-box;
+    }
   </style>
   <script>
     function switchLanguage(lang) {
       const en = document.querySelectorAll('.en');
       const da = document.querySelectorAll('.da');
+      const de = document.querySelectorAll('.de');
       en.forEach(el => el.style.display = lang === 'en' ? 'block' : 'none');
       da.forEach(el => el.style.display = lang === 'da' ? 'block' : 'none');
+      de.forEach(el => el.style.display = lang === 'de' ? 'block' : 'none');
     }
-    window.onload = () => switchLanguage('en');
+    window.onload = () => switchLanguage('da');
   </script>
 </head>
 <body>
@@ -74,6 +102,9 @@
       <button onclick="switchLanguage('da')">
         <img src="https://flagcdn.com/w40/dk.png" alt="Dansk">
       </button>
+      <button onclick="switchLanguage('de')">
+        <img src="https://flagcdn.com/w40/de.png" alt="Deutsch">
+      </button>
     </div>
 
     <div class="en">
@@ -81,6 +112,20 @@
       <p>
         I’m a passionate and versatile IT Support Specialist with a background that spans both technical expertise and human-centered problem-solving. I bring a unique combination of experience from professional roles and extensive volunteer work and leadership. My strength lies in my ability to stay calm under pressure, learn fast, and continuously improve workflows.
       </p>
+
+      <h2>Skills at a Glance</h2>
+      <div class="skills-section">
+        <ul class="skills-list">
+          <li>Volunteer Leadership</li>
+          <li>Support</li>
+          <li>Office 365 (M365)</li>
+          <li>Teams</li>
+          <li>Client Tools</li>
+          <li>Onboarding & Documentation</li>
+          <li>Shipping & Handling</li>
+          <li>Windows & Hardware</li>
+        </ul>
+      </div>
 
       <h2>Professional Background</h2>
       <p>
@@ -115,6 +160,20 @@
         Jeg er en passioneret og alsidig IT-supportspecialist med en baggrund, der spænder over både teknisk ekspertise og menneskecentreret problemløsning. Jeg bringer en unik kombination af erfaring fra professionelle roller og omfattende frivilligt arbejde og lederskab. Min styrke ligger i min evne til at bevare roen under pres, lære hurtigt og løbende forbedre arbejdsgange.
       </p>
 
+      <h2>Mine færdigheder</h2>
+      <div class="skills-section">
+        <ul class="skills-list">
+          <li>Frivilligledelse</li>
+          <li>Support</li>
+          <li>Office 365 (M365)</li>
+          <li>Teams</li>
+          <li>Klientværktøjer</li>
+          <li>Onboarding & Dokumentation</li>
+          <li>Pakkehåndtering</li>
+          <li>Windows & Hardware</li>
+        </ul>
+      </div>
+
       <h2>Erhvervserfaring</h2>
       <p>
         Jeg startede min karriere gennem frivilligt arbejde, hvilket formede min arbejdsetiske lederstil og min ansvarsfølelse. Mit samarbejde med organisationer som UngHolbæk og LUCERNA hjalp mig med at udvikle et øje for logistik, personaleledelse og struktureret planlægning. Siden jeg kom til SJF Bank som IT-supporter, har jeg supporteret hundredvis af brugere, administreret IT-infrastruktur og leveret løsninger på tværs af virksomheden.
@@ -140,20 +199,65 @@
       <p><a href="https://www.linkedin.com/in/mathias-andersen-885ba3248/">Læs mere om min rejse, certifikater og resultater...</a></p>
       <p>Du kan kontakte mig på <a href="mailto:mathiasca0209@gmail.com">mathiasca0209@gmail.com</a></p>
       <h2>Find Mig!</h2>
-   
     </div>
 
+    <div class="de" style="display:none">
+      <h1>Hallo, ich bin Mathias Andersen 👋</h1>
+      <p>
+        Ich bin ein leidenschaftlicher und vielseitiger IT-Support-Spezialist mit einem Hintergrund, der sowohl technische Expertise als auch menschenzentrierte Problemlösung umfasst. Ich bringe eine einzigartige Kombination aus Erfahrung in professionellen Rollen sowie umfangreicher ehrenamtlicher Arbeit und Führung mit. Meine Stärke liegt in meiner Fähigkeit, unter Druck ruhig zu bleiben, schnell zu lernen und Arbeitsabläufe kontinuierlich zu verbessern.
+      </p>
 
-    
+      <h2>Meine Fähigkeiten</h2>
+      <div class="skills-section">
+        <ul class="skills-list">
+          <li>Ehrenamtliche Führung</li>
+          <li>Support</li>
+          <li>Office 365 (M365)</li>
+          <li>Teams</li>
+          <li>Client-Tools</li>
+          <li>Onboarding & Dokumentation</li>
+          <li>Versand & Logistik</li>
+          <li>Windows & Hardware</li>
+        </ul>
+      </div>
+
+      <h2>Berufserfahrung</h2>
+      <p>
+        Ich begann meine Karriere durch ehrenamtliche Arbeit, die meinen Arbeitsstil und mein Verantwortungsbewusstsein prägte. Die Zusammenarbeit mit Organisationen wie UngHolbæk und LUCERNA half mir, ein Auge für Logistik, Personalmanagement und strukturierte Planung zu entwickeln. Seit meinem Einstieg bei der SJF Bank als IT-Supporter habe ich Hunderte von Nutzern unterstützt, IT-Infrastruktur verwaltet und unternehmensweite Lösungen bereitgestellt.
+      </p>
+
+      <h2>Projekte & Kompetenzen</h2>
+      <div class="project">
+        <strong>IT-Support & Betrieb</strong><br>
+        Praktische Erfahrung in der Einrichtung, Wartung und Fehlerbehebung von Hardware. Entwicklung interner Dokumentation, Verbesserung von Onboarding-Prozessen und technische Unterstützung in einem schnelllebigen Bankenumfeld.
+      </div>
+      <div class="project">
+        <strong>Ehrenamt & Führung</strong><br>
+        Leitung und Teilnahme an gemeinschaftsbasierten Projekten, Bildungsprogrammen und Workshops für Jugendliche und junge Erwachsene. Organisation und Durchführung großer Veranstaltungen sowie Führung verschiedener Teams von Freiwilligen, Förderung von Motivation und Teamgeist.
+      </div>
+      <div class="project">
+        <strong>Technische Fähigkeiten</strong><br>
+        Versiert im Umgang mit Support-Tools, Hardware-Einrichtung, Fehlerbehebung (remote und vor Ort) sowie Versand. Erfahrung mit M365, Teams, SharePoint und anderen Kollaborationsplattformen.
+      </div>
+      <div class="project">
+        <strong>Soziale Kompetenzen</strong><br>
+        Hervorragender Kommunikator und Teamplayer. Bekannt dafür, ein verlässlicher Kollege zu sein, sich schnell anzupassen und durch Beständigkeit und Empathie Vertrauen aufzubauen.
+      </div>
+      <p><a href="https://www.linkedin.com/in/mathias-andersen-885ba3248/">Mehr über meinen Werdegang, Zertifikate und Erfolge...</a></p>
+      <p>Sie können mich erreichen unter <a href="mailto:mathiasca0209@gmail.com">mathiasca0209@gmail.com</a></p>
+      <h2>Kontaktieren Sie mich!</h2>
+    </div>
+
     <div class="social-links">
       <a href="https://www.linkedin.com/in/mathias-andersen-885ba3248/" target="_blank">
         <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn">
       </a>
-      <a href="https://l.instagram.com/?u=https%3A%2F%2Finstagram.com%2Fandersen_creative%3Figshid%3DOGQ5ZDc2ODk2ZA%253D%253D%26utm_source%3Dqr%26fbclid%3DPAZXh0bgNhZW0CMTEAAaeNbr0qpi3PpsVatYHoItyWq0ukg51jhf5MRvldTOMXpweHOnZdJgqHQzuU-Q_aem_MU9POe_G2ppRMbi1iVP5lw&e=AT3ar3F9C134yHcpPxiRBr_kyqCuRoMdR69X0QM2DItFrTKHERl5rYgbVnrdgB6RUnKlpVRJEyyzBnugS4OYu-5yUoYJEeQ0aLgOTiA" target="_blank">
+      <a href="https://instagram.com/andersen_creative" target="_blank">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/2048px-Instagram_icon.png" alt="Instagram">
       </a>
       <a href="mailto:mathiasca0209@gmail.com" target="_blank">
         <img src="https://static.vecteezy.com/system/resources/previews/020/964/377/non_2x/gmail-mail-icon-for-web-design-free-png.png" alt="Email">
+      </a>
     </div>
   </div>
 </body>
