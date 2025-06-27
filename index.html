@@ -80,14 +80,169 @@
       border: 1px solid #d0d0d0;
       box-sizing: border-box;
     }
+    /* Contact Button Styles */
+    .contact-toggle-btn {
+      position: static;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+      width: 48px;
+      height: 48px;
+      background: #efd4ae;
+      border-radius: 50%;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+      margin: 0;
+      padding: 0;
+    }
+    .contact-toggle-btn:hover {
+      background: #e0c9a6;
+    }
+    .contact-toggle-btn img {
+      width: 28px;
+      height: 28px;
+    }
+    .contact-box {
+      display: none;
+      position: fixed;
+      bottom: 100px;
+      left: 30px;
+      right: auto;
+      width: 340px;
+      background: rgba(255,255,255,0.98);
+      border-radius: 18px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.18), 0 1.5px 6px rgba(0,0,0,0.10);
+      padding: 28px 24px 18px 24px;
+      z-index: 9999;
+      border: 1.5px solid #efd4ae;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+    .contact-box.active {
+      display: block;
+    }
+    .contact-box h3 {
+      margin-top: 0;
+      margin-bottom: 18px;
+      font-size: 1.25em;
+      color: #222;
+      text-align: center;
+      letter-spacing: 0.5px;
+    }
+    .contact-box label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 1em;
+      color: #444;
+      font-weight: 500;
+      letter-spacing: 0.2px;
+    }
+    .contact-box input, .contact-box textarea {
+      width: 100%;
+      padding: 10px 12px;
+      margin-bottom: 14px;
+      border: 1.5px solid #e0c9a6;
+      border-radius: 8px;
+      font-size: 1em;
+      background: #faf7f3;
+      transition: border 0.2s, box-shadow 0.2s;
+      box-sizing: border-box;
+      font-family: inherit;
+      outline: none;
+    }
+    .contact-box input:focus, .contact-box textarea:focus {
+      border: 1.5px solid #eab676;
+      box-shadow: 0 0 0 2px #efd4ae55;
+      background: #fff;
+    }
+    .contact-box textarea {
+      resize: vertical;
+      min-height: 60px;
+      max-height: 160px;
+    }
+    .contact-box button[type="submit"] {
+      width: 100%;
+      background: linear-gradient(90deg, #efd4ae 60%, #eab676 100%);
+      color: #222;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 0;
+      font-size: 1.08em;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px rgba(234,182,118,0.08);
+      letter-spacing: 0.5px;
+    }
+    .contact-box button[type="submit"]:hover {
+      background: linear-gradient(90deg, #eab676 60%, #efd4ae 100%);
+      color: #111;
+    }
+    .contact-box .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 16px;
+      background: none;
+      border: none;
+      font-size: 1.5em;
+      color: #bfa77a;
+      cursor: pointer;
+      transition: color 0.2s, transform 0.2s;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .contact-box .close-btn:hover {
+      color: #eab676;
+      background: #f5e6d3;
+      transform: scale(1.12);
+    }
+    /* Social + Contact Buttons Row */
+    .bottom-left-row {
+      display: flex;
+      flex-direction: row;
+      gap: 16px;
+      align-items: center;
+      margin-top: 16px;
+      margin-bottom: 24px;
+      justify-content: flex-start;
+    }
+    .bottom-left-row a, .bottom-left-row button {
+      background: #efd4ae;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+      transition: background 0.2s, transform 0.2s;
+      border: none;
+      text-decoration: none;
+      margin: 0;
+      padding: 0;
+    }
+    .bottom-left-row a:hover, .bottom-left-row button:hover {
+      background: #e0c9a6;
+      transform: scale(1.08);
+    }
+    .bottom-left-row img {
+      width: 28px;
+      height: 28px;
+    }
+    /* Only hide floating-social, not .contact-toggle-btn in content */
+    .floating-social { display: none !important; }
   </style>
   <script>
     function switchLanguage(lang) {
       const en = document.querySelectorAll('.en');
       const da = document.querySelectorAll('.da');
       const de = document.querySelectorAll('.de');
-      da.forEach(el => el.style.display = lang === 'da' ? 'block' : 'none');
       en.forEach(el => el.style.display = lang === 'en' ? 'block' : 'none');
+      da.forEach(el => el.style.display = lang === 'da' ? 'block' : 'none');
       de.forEach(el => el.style.display = lang === 'de' ? 'block' : 'none');
     }
     window.onload = () => switchLanguage('da');
@@ -152,6 +307,17 @@
       <p><a href="https://www.linkedin.com/in/mathias-andersen-885ba3248/">Read more about my journey, certifications, and achievements...</a></p>
       <p>You can reach me at <a href="mailto:Mathiasca0209@gmail.com">Mathiasca0209@gmail.com</a></p>
       <h2>Let’s Connect!</h2>
+      <div class="bottom-left-row">
+        <button class="contact-toggle-btn" aria-label="Open contact form">
+          <img src="https://static.vecteezy.com/system/resources/previews/020/964/377/non_2x/gmail-mail-icon-for-web-design-free-png.png" alt="Contact">
+        </button>
+        <a href="https://www.linkedin.com/in/mathias-andersen-885ba3248/" target="_blank" aria-label="LinkedIn">
+          <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn">
+        </a>
+        <a href="https://instagram.com/andersen_creative" target="_blank" aria-label="Instagram">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/2048px-Instagram_icon.png" alt="Instagram">
+        </a>
+      </div>
     </div>
 
     <div class="da" style="display:none">
@@ -197,8 +363,19 @@
         Enestående kommunikator og teamplayer. Kendt for at være en pålidelig kollega, hurtig til at tilpasse sig og en person, der opbygger tillid gennem vedholdenhed og empati.
       </div>
       <p><a href="https://www.linkedin.com/in/mathias-andersen-885ba3248/">Læs mere om min rejse, certifikater og resultater...</a></p>
-      <p>Du kan kontakte mig på <a href="mailto:mathiasca0209@gmail.com">mathiasca0209@gmail.com</a></p>
+      <p>Du kan kontakte mig på,  <a href="mailto:mathiasca0209@gmail.com">mathiasca0209@gmail.com</a></p>
       <h2>Find Mig!</h2>
+      <div class="bottom-left-row">
+        <button class="contact-toggle-btn" aria-label="Åbn kontaktformular">
+          <img src="https://static.vecteezy.com/system/resources/previews/020/964/377/non_2x/gmail-mail-icon-for-web-design-free-png.png" alt="Contact">
+        </button>
+        <a href="https://www.linkedin.com/in/mathias-andersen-885ba3248/" target="_blank" aria-label="LinkedIn">
+          <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn">
+        </a>
+        <a href="https://instagram.com/andersen_creative" target="_blank" aria-label="Instagram">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/2048px-Instagram_icon.png" alt="Instagram">
+        </a>
+      </div>
     </div>
 
     <div class="de" style="display:none">
@@ -246,19 +423,110 @@
       <p><a href="https://www.linkedin.com/in/mathias-andersen-885ba3248/">Mehr über meinen Werdegang, Zertifikate und Erfolge...</a></p>
       <p>Sie können mich erreichen unter <a href="mailto:mathiasca0209@gmail.com">mathiasca0209@gmail.com</a></p>
       <h2>Kontaktieren Sie mich!</h2>
+      <div class="bottom-left-row">
+        <button class="contact-toggle-btn" aria-label="Kontaktformular öffnen">
+          <img src="https://static.vecteezy.com/system/resources/previews/020/964/377/non_2x/gmail-mail-icon-for-web-design-free-png.png" alt="Contact">
+        </button>
+        <a href="https://www.linkedin.com/in/mathias-andersen-885ba3248/" target="_blank" aria-label="LinkedIn">
+          <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn">
+        </a>
+        <a href="https://instagram.com/andersen_creative" target="_blank" aria-label="Instagram">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/2048px-Instagram_icon.png" alt="Instagram">
+        </a>
+      </div>
     </div>
 
-    <div class="social-links">
-      <a href="https://www.linkedin.com/in/mathias-andersen-885ba3248/" target="_blank">
-        <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn">
-      </a>
-      <a href="https://instagram.com/andersen_creative" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/2048px-Instagram_icon.png" alt="Instagram">
-      </a>
-      <a href="mailto:mathiasca0209@gmail.com" target="_blank">
-        <img src="https://static.vecteezy.com/system/resources/previews/020/964/377/non_2x/gmail-mail-icon-for-web-design-free-png.png" alt="Email">
-      </a>
-    </div>
+  </div> <!-- end .container -->
+
+  <div class="contact-box" id="contactBox">
+    <button class="close-btn" aria-label="Luk">&times;</button>
+    <h3 id="contact-title">Send mig en besked</h3>
+    <form action="https://formspree.io/f/xjkrjrjv" method="POST">
+      <label for="contact-name" id="label-name">Navn:</label>
+      <input type="text" id="contact-name" name="Navn" required>
+      <label for="contact-email" id="label-email">Email:</label>
+      <input type="email" id="contact-email" name="Email" required>
+      <label for="contact-message" id="label-message">Besked:</label>
+      <textarea id="contact-message" name="Besked" required></textarea>
+      <button type="submit" id="contact-send">Send</button>
+    </form>
   </div>
+
+  <script>
+    function toggleContactBox() {
+      var box = document.getElementById('contactBox');
+      box.classList.toggle('active');
+      if (box.classList.contains('active')) {
+        box.style.zIndex = 99999;
+        // Focus the first input or textarea
+        var firstField = box.querySelector('input, textarea');
+        if (firstField) firstField.focus();
+      }
+    }
+    // Language switching for contact form
+    const contactLang = {
+      da: {
+        title: 'Send mig en besked',
+        name: 'Navn:',
+        email: 'Email:',
+        message: 'Besked:',
+        send: 'Send'
+      },
+      en: {
+        title: 'Send me a message',
+        name: 'Name:',
+        email: 'Email:',
+        message: 'Message:',
+        send: 'Send'
+      },
+      de: {
+        title: 'Schreib mir eine Nachricht',
+        name: 'Name:',
+        email: 'E-Mail:',
+        message: 'Nachricht:',
+        send: 'Senden'
+      }
+    };
+    function setContactLang(lang) {
+      document.getElementById('contact-title').textContent = contactLang[lang].title;
+      document.getElementById('label-name').textContent = contactLang[lang].name;
+      document.getElementById('label-email').textContent = contactLang[lang].email;
+      document.getElementById('label-message').textContent = contactLang[lang].message;
+      document.getElementById('contact-send').textContent = contactLang[lang].send;
+    }
+    // Patch switchLanguage to also update contact form
+    const origSwitchLanguage = window.switchLanguage;
+    window.switchLanguage = function(lang) {
+      origSwitchLanguage(lang);
+      setContactLang(lang);
+      attachContactBtnListeners();
+    };
+    // Set initial contact form language
+    setContactLang('da');
+    // Attach event listeners to all contact-toggle-btn buttons and close button
+    function attachContactBtnListeners() {
+      document.querySelectorAll('.contact-toggle-btn').forEach(btn => {
+        btn.removeEventListener('click', toggleContactBox);
+        btn.addEventListener('click', toggleContactBox);
+      });
+      var closeBtn = document.querySelector('.contact-box .close-btn');
+      if (closeBtn) {
+        closeBtn.removeEventListener('click', toggleContactBox);
+        closeBtn.addEventListener('click', toggleContactBox);
+      }
+    }
+    // Attach on load
+    window.addEventListener('DOMContentLoaded', attachContactBtnListeners);
+    // Close contact box when clicking outside
+    document.addEventListener('mousedown', function(event) {
+      var box = document.getElementById('contactBox');
+      if (box.classList.contains('active')) {
+        // If click is outside the box and not on a contact-toggle-btn
+        if (!box.contains(event.target) && !event.target.closest('.contact-toggle-btn')) {
+          toggleContactBox();
+        }
+      }
+    });
+  </script>
 </body>
 </html>
