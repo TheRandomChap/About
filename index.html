@@ -79,6 +79,36 @@
       height: 100%;
       border: 1px solid #d0d0d0;
       box-sizing: border-box;
+      cursor: pointer;
+      position: relative;
+      transition: box-shadow 0.2s, background 0.2s;
+      font-weight: 500;
+      flex-direction: column;
+    }
+    .skills-list li:hover {
+      background: #e0c9a6;
+      box-shadow: 0 2px 8px #efd4ae55;
+    }
+    .skill-explanation {
+      display: none;
+      margin-top: 8px;
+      font-size: 0.98em;
+      color: #444;
+      background: #fff8ef;
+      border-radius: 5px;
+      padding: 8px 10px;
+      box-shadow: 0 1px 4px #efd4ae33;
+      width: 100%;
+      text-align: left;
+      z-index: 2;
+    }
+    .skills-list li.active .skill-explanation {
+      display: block;
+      animation: fadeIn 0.25s;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-8px); }
+      to { opacity: 1; transform: translateY(0); }
     }
     /* Contact Button Styles */
     .contact-toggle-btn {
@@ -246,6 +276,67 @@
       de.forEach(el => el.style.display = lang === 'de' ? 'block' : 'none');
     }
     window.onload = () => switchLanguage('da');
+
+    // Skill explanations for each language
+    const skillExplanations = {
+      en: {
+        leadership: 'Experience leading and motivating volunteer teams, organizing events, and fostering collaboration.',
+        support: 'Providing technical support, troubleshooting, and user assistance in fast-paced environments.',
+        m365: 'Proficient in Microsoft 365 suite: Outlook, Word, Excel, Teams, SharePoint, and more.',
+        teams: 'Skilled in using and supporting Microsoft Teams for communication and collaboration.',
+        client: 'Expertise with client support tools and software for efficient IT service.',
+        onboarding: 'Developing onboarding processes and documentation for new users and staff.',
+        shipping: 'Managing shipping, receiving, and handling logistics for IT equipment.',
+        hardware: 'Setting up, maintaining, and troubleshooting Windows systems and hardware.'
+      },
+      da: {
+        leadership: 'Erfaring med at lede og motivere frivillige teams, arrangere events og fremme samarbejde.',
+        support: 'Yder teknisk support, fejlfinding og brugerservice i travle miljøer.',
+        m365: 'Rutineret i Microsoft 365: Outlook, Word, Excel, Teams m.m.',
+        teams: 'Stærk i brug og af Microsoft Teams til kommunikation og samarbejde.',
+        client: 'Ekspert i klientsupportværktøjer og software til effektiv IT-service.',
+        onboarding: 'Udvikling af onboarding-processer og dokumentation for nye brugere og ansatte.',
+        shipping: 'Håndtering af forsendelse, modtagelse og logistik for IT-udstyr.',
+        hardware: 'Opsætning, vedligeholdelse og fejlfinding af Windows-systemer og hardware.'
+      },
+      de: {
+        leadership: 'Erfahrung in der Leitung und Motivation von Freiwilligenteams, Organisation von Veranstaltungen und Förderung der Zusammenarbeit.',
+        support: 'Technischer Support, Fehlerbehebung und Benutzerunterstützung in dynamischen Umgebungen.',
+        m365: 'Versiert im Umgang mit Microsoft 365: Outlook, Word, Excel, Teams, SharePoint u.a.',
+        teams: 'Kompetent in der Nutzung und Unterstützung von Microsoft Teams für Kommunikation und Zusammenarbeit.',
+        client: 'Experte für Client-Support-Tools und Software für effizienten IT-Service.',
+        onboarding: 'Entwicklung von Onboarding-Prozessen und Dokumentation für neue Nutzer und Mitarbeiter.',
+        shipping: 'Verwaltung von Versand, Empfang und Logistik für IT-Ausrüstung.',
+        hardware: 'Einrichtung, Wartung und Fehlerbehebung von Windows-Systemen und Hardware.'
+      }
+    };
+
+    // Skill box click logic
+    function setupSkillBoxes() {
+      ['en', 'da', 'de'].forEach(lang => {
+        document.querySelectorAll('.' + lang + ' .skills-list li').forEach(li => {
+          const skill = li.getAttribute('data-skill');
+          const expl = li.querySelector('.skill-explanation');
+          expl.textContent = skillExplanations[lang][skill] || '';
+          li.onclick = function() {
+            // Accordion: close others
+            document.querySelectorAll('.' + lang + ' .skills-list li').forEach(other => {
+              if (other !== li) other.classList.remove('active');
+            });
+            li.classList.toggle('active');
+          };
+        });
+      });
+    }
+    // Call on load and after language switch
+    window.addEventListener('DOMContentLoaded', setupSkillBoxes);
+    const origSwitchLanguage2 = window.switchLanguage;
+    window.switchLanguage = function(lang) {
+      origSwitchLanguage2(lang);
+      setContactLang(lang);
+      attachContactBtnListeners();
+      setupSkillBoxes();
+    };
   </script>
 </head>
 <body>
@@ -271,14 +362,14 @@
       <h2>Skills at a Glance</h2>
       <div class="skills-section">
         <ul class="skills-list">
-          <li>Volunteer Leadership</li>
-          <li>Support</li>
-          <li>Office 365 (M365)</li>
-          <li>Teams</li>
-          <li>Client Tools</li>
-          <li>Onboarding & Documentation</li>
-          <li>Shipping & Handling</li>
-          <li>Windows & Hardware</li>
+          <li data-skill="leadership">Volunteer Leadership<div class="skill-explanation"></div></li>
+          <li data-skill="support">Support<div class="skill-explanation"></div></li>
+          <li data-skill="m365">Office 365 (M365)<div class="skill-explanation"></div></li>
+          <li data-skill="teams">Teams<div class="skill-explanation"></div></li>
+          <li data-skill="client">Client Tools<div class="skill-explanation"></div></li>
+          <li data-skill="onboarding">Onboarding & Documentation<div class="skill-explanation"></div></li>
+          <li data-skill="shipping">Shipping & Handling<div class="skill-explanation"></div></li>
+          <li data-skill="hardware">Windows & Hardware<div class="skill-explanation"></div></li>
         </ul>
       </div>
 
@@ -298,7 +389,7 @@
       </div>
       <div class="project">
         <strong>Technical Expertise</strong><br>
-        Skilled in client support tools, hardware setup, remote and physical hardware troubleshooting, and sending packages. Experienced with M365, Teams, SharePoint, and other collaboration platforms.
+        Skilled in client support tools, hardware setup, hardware troubleshooting both remote and physical and sending packages. Experienced with M365, Teams, SharePoint, and other collaboration platforms.
       </div>
       <div class="project">
         <strong>Soft Skills</strong><br>
@@ -329,14 +420,14 @@
       <h2>Mine færdigheder</h2>
       <div class="skills-section">
         <ul class="skills-list">
-          <li>Frivilligledelse</li>
-          <li>Support</li>
-          <li>Office 365 (M365)</li>
-          <li>Teams</li>
-          <li>Klientværktøjer</li>
-          <li>Onboarding & Dokumentation</li>
-          <li>Pakkehåndtering</li>
-          <li>Windows & Hardware</li>
+          <li data-skill="leadership">Frivilligledelse<div class="skill-explanation"></div></li>
+          <li data-skill="support">Support<div class="skill-explanation"></div></li>
+          <li data-skill="m365">Office 365 (M365)<div class="skill-explanation"></div></li>
+          <li data-skill="teams">Teams<div class="skill-explanation"></div></li>
+          <li data-skill="client">Klientværktøjer<div class="skill-explanation"></div></li>
+          <li data-skill="onboarding">Onboarding & Dokumentation<div class="skill-explanation"></div></li>
+          <li data-skill="shipping">Pakkehåndtering<div class="skill-explanation"></div></li>
+          <li data-skill="hardware">Windows & Hardware<div class="skill-explanation"></div></li>
         </ul>
       </div>
 
@@ -387,14 +478,14 @@
       <h2>Meine Fähigkeiten</h2>
       <div class="skills-section">
         <ul class="skills-list">
-          <li>Ehrenamtliche Führung</li>
-          <li>Support</li>
-          <li>Office 365 (M365)</li>
-          <li>Teams</li>
-          <li>Client-Tools</li>
-          <li>Onboarding & Dokumentation</li>
-          <li>Versand & Logistik</li>
-          <li>Windows & Hardware</li>
+          <li data-skill="leadership">Ehrenamtliche Führung<div class="skill-explanation"></div></li>
+          <li data-skill="support">Support<div class="skill-explanation"></div></li>
+          <li data-skill="m365">Office 365 (M365)<div class="skill-explanation"></div></li>
+          <li data-skill="teams">Teams<div class="skill-explanation"></div></li>
+          <li data-skill="client">Client-Tools<div class="skill-explanation"></div></li>
+          <li data-skill="onboarding">Onboarding & Dokumentation<div class="skill-explanation"></div></li>
+          <li data-skill="shipping">Versand & Logistik<div class="skill-explanation"></div></li>
+          <li data-skill="hardware">Windows & Hardware<div class="skill-explanation"></div></li>
         </ul>
       </div>
 
