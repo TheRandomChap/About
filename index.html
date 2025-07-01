@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About Me - Mathias Andersen</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      background-color: #efd4ae;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h1, h2 {
+      color: #222;
+    }
+    .project {
+      margin-bottom: 15px;
+    }
+    .social-links {
+      margin-top: 10px;
+    }
+    .social-links a {
+      display: inline-block;
+      margin-right: 10px;
+    }
+    .social-links img {
+      width: 24px;
+      height: 24px;
+      vertical-align: middle;
+    }
+    .lang-switcher {
+      text-align: right;
+      margin-bottom: 10px;
+    }
+    .lang-switcher button {
+      padding: 6px 12px;
+      margin-left: 5px;
+      border: none;
+      background: none;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    .lang-switcher button:hover {
+      transform: scale(1.1);
+    }
+    .lang-switcher img {
+      width: 32px;
+      height: 24px;
+      vertical-align: middle;
+    }
+    .skills-section {
+      margin-top: 20px;
+    }
+    .skills-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 10px;
+      list-style: none;
+      padding-left: 0;
+    }
+    .skills-list li {
+      background: #f0f0f0;
+      border-radius: 5px;
+      padding: 8px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      border: 1px solid #d0d0d0;
+      box-sizing: border-box;
+      cursor: pointer;
+      position: relative;
+      transition: box-shadow 0.2s, background 0.2s;
+      font-weight: 500;
+      flex-direction: column;
+    }
+    .skills-list li:hover {
+      background: #e0c9a6;
+      box-shadow: 0 2px 8px #efd4ae55;
+    }
+    .skill-explanation {
+      display: none;
+      margin-top: 8px;
+      font-size: 0.98em;
+      color: #444;
+      background: #fff8ef;
+      border-radius: 5px;
+      padding: 8px 10px;
+      box-shadow: 0 1px 4px #efd4ae33;
+      width: 100%;
+      text-align: left;
+      z-index: 2;
+    }
+    .skills-list li.active .skill-explanation {
+      display: block;
+      animation: fadeIn 0.25s;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    /* Contact Button Styles */
+    .contact-toggle-btn {
+      position: static;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+      width: 48px;
+      height: 48px;
+      background: #efd4ae;
+      border-radius: 50%;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+      margin: 0;
+      padding: 0;
+    }
+    .contact-toggle-btn:hover {
+      background: #e0c9a6;
+    }
+    .contact-toggle-btn img {
+      width: 28px;
+      height: 28px;
+    }
+    .contact-box {
+      display: none;
+      position: fixed;
+      bottom: 100px;
+      left: 30px;
+      right: auto;
+      width: 340px;
+      background: rgba(255,255,255,0.98);
+      border-radius: 18px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.18), 0 1.5px 6px rgba(0,0,0,0.10);
+      padding: 28px 24px 18px 24px;
+      z-index: 9999;
+      border: 1.5px solid #efd4ae;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+    .contact-box.active {
+      display: block;
+    }
+    .contact-box h3 {
+      margin-top: 0;
+      margin-bottom: 18px;
+      font-size: 1.25em;
+      color: #222;
+      text-align: center;
+      letter-spacing: 0.5px;
+    }
+    .contact-box label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 1em;
+      color: #444;
+      font-weight: 500;
+      letter-spacing: 0.2px;
+    }
+    .contact-box input, .contact-box textarea {
+      width: 100%;
+      padding: 10px 12px;
+      margin-bottom: 14px;
+      border: 1.5px solid #e0c9a6;
+      border-radius: 8px;
+      font-size: 1em;
+      background: #faf7f3;
+      transition: border 0.2s, box-shadow 0.2s;
+      box-sizing: border-box;
+      font-family: inherit;
+      outline: none;
+    }
+    .contact-box input:focus, .contact-box textarea:focus {
+      border: 1.5px solid #eab676;
+      box-shadow: 0 0 0 2px #efd4ae55;
+      background: #fff;
+    }
+    .contact-box textarea {
+      resize: vertical;
+      min-height: 60px;
+      max-height: 160px;
+    }
+    .contact-box button[type="submit"] {
+      width: 100%;
+      background: linear-gradient(90deg, #efd4ae 60%, #eab676 100%);
+      color: #222;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 0;
+      font-size: 1.08em;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px rgba(234,182,118,0.08);
+      letter-spacing: 0.5px;
+    }
+    .contact-box button[type="submit"]:hover {
+      background: linear-gradient(90deg, #eab676 60%, #efd4ae 100%);
+      color: #111;
+    }
+    .contact-box .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 16px;
+      background: none;
+      border: none;
+      font-size: 1.5em;
+      color: #bfa77a;
+      cursor: pointer;
+      transition: color 0.2s, transform 0.2s;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .contact-box .close-btn:hover {
+      color: #eab676;
+      background: #f5e6d3;
+      transform: scale(1.12);
+    }
+    /* Social + Contact Buttons Row */
+    .bottom-left-row {
+      display: flex;
+      flex-direction: row;
+      gap: 16px;
+      align-items: center;
+      margin-top: 16px;
+      margin-bottom: 24px;
+      justify-content: flex-start;
+    }
+    .bottom-left-row a, .bottom-left-row button {
+      background: #efd4ae;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+      transition: background 0.2s, transform 0.2s;
+      border: none;
+      text-decoration: none;
+      margin: 0;
+      padding: 0;
+    }
+    .bottom-left-row a:hover, .bottom-left-row button:hover {
+      background: #e0c9a6;
+      transform: scale(1.08);
+    }
+    .bottom-left-row img {
+      width: 28px;
+      height: 28px;
+    }
+    /* Only hide floating-social, not .contact-toggle-btn in content */
+    .floating-social { display: none !important; }
+  </style>
+  <script>
+    function switchLanguage(lang) {
+      const en = document.querySelectorAll('.en');
+      const da = document.querySelectorAll('.da');
+      const de = document.querySelectorAll('.de');
+      en.forEach(el => el.style.display = lang === 'en' ? 'block' : 'none');
+      da.forEach(el => el.style.display = lang === 'da' ? 'block' : 'none');
+      de.forEach(el => el.style.display = lang === 'de' ? 'block' : 'none');
+    }
+    window.onload = () => switchLanguage('da');
+
+    // Skill explanations for each language
+    const skillExplanations = {
+      en: {
+        leadership: 'Experience leading and motivating volunteer teams, organizing events, and fostering collaboration.',
+        support: 'Providing technical support, troubleshooting, and user assistance in fast-paced environments.',
+        m365: 'Proficient in Microsoft 365 suite: Outlook, Word, Excel, Teams, SharePoint, and more.',
+        teams: 'Skilled in using and supporting Microsoft Teams for communication and collaboration.',
+        client: 'Expertise with client support tools and software for efficient IT service.',
+        onboarding: 'Developing onboarding processes and documentation for new users and staff.',
+        shipping: 'Managing shipping, receiving, and handling logistics for IT equipment.',
+        hardware: 'Setting up, maintaining, and troubleshooting Windows systems and hardware.'
+      },
+      da: {
+        leadership: 'Erfaring med at lede og motivere frivillige teams, arrangere events og fremme samarbejde.',
+        support: 'Yder teknisk support, fejlfinding og brugerservice i travle miljøer.',
+        m365: 'Rutineret i Microsoft 365: Outlook, Word, Excel, Teams m.m.',
+        teams: 'Stærk i brug og af Microsoft Teams til kommunikation og samarbejde.',
+        client: 'Ekspert i klientsupportværktøjer og software til effektiv IT-service.',
+        onboarding: 'Udvikling af onboarding-processer og dokumentation for nye brugere og ansatte.',
+        shipping: 'Håndtering af forsendelse, modtagelse og logistik for IT-udstyr.',
+        hardware: 'Opsætning, vedligeholdelse og fejlfinding af Windows-systemer og hardware.'
+      },
+      de: {
+        leadership: 'Erfahrung in der Leitung und Motivation von Freiwilligenteams, Organisation von Veranstaltungen und Förderung der Zusammenarbeit.',
+        support: 'Technischer Support, Fehlerbehebung und Benutzerunterstützung in dynamischen Umgebungen.',
+        m365: 'Versiert im Umgang mit Microsoft 365: Outlook, Word, Excel, Teams, SharePoint u.a.',
+        teams: 'Kompetent in der Nutzung und Unterstützung von Microsoft Teams für Kommunikation und Zusammenarbeit.',
+        client: 'Experte für Client-Support-Tools und Software für effizienten IT-Service.',
+        onboarding: 'Entwicklung von Onboarding-Prozessen und Dokumentation für neue Nutzer und Mitarbeiter.',
+        shipping: 'Verwaltung von Versand, Empfang und Logistik für IT-Ausrüstung.',
+        hardware: 'Einrichtung, Wartung und Fehlerbehebung von Windows-Systemen und Hardware.'
+      }
+    };
+
+    // Skill box click logic
+    function setupSkillBoxes() {
+      ['en', 'da', 'de'].forEach(lang => {
+        document.querySelectorAll('.' + lang + ' .skills-list li').forEach(li => {
+          const skill = li.getAttribute('data-skill');
+          const expl = li.querySelector('.skill-explanation');
+          expl.textContent = skillExplanations[lang][skill] || '';
+          li.onclick = function() {
+            // Accordion: close others
+            document.querySelectorAll('.' + lang + ' .skills-list li').forEach(other => {
+              if (other !== li) other.classList.remove('active');
+            });
+            li.classList.toggle('active');
+          };
+        });
+      });
+    }
+    // Call on load and after language switch
+    window.addEventListener('DOMContentLoaded', setupSkillBoxes);
+    const origSwitchLanguage2 = window.switchLanguage;
+    window.switchLanguage = function(lang) {
+      origSwitchLanguage2(lang);
+      setContactLang(lang);
+      attachContactBtnListeners();
+      setupSkillBoxes();
+    };
+  </script>
+</head>
+<body>
+  <div class="container">
+    <div class="lang-switcher">
+      <button onclick="switchLanguage('da')">
+        <img src="https://flagcdn.com/w40/dk.png" alt="Dansk">
+      </button>
+      <button onclick="switchLanguage('en')">
+        <img src="https://flagcdn.com/w40/gb.png" alt="English">
+      </button>
+      <button onclick="switchLanguage('de')">
+        <img src="https://flagcdn.com/w40/de.png" alt="Deutsch">
+      </button>
+    </div>
+
+    <div class="en">
+      <h1>Hello, I'm Mathias Andersen 👋</h1>
+      <p>
+        I’m a passionate and versatile IT Support Specialist with a background that spans both technical expertise and human-centered problem-solving. I bring a unique combination of experience from professional roles and extensive volunteer work and leadership. My strength lies in my ability to stay calm under pressure, learn fast, and continuously improve workflows.
+      </p>
+
+      <h2>Skills at a Glance</h2>
+      <div class="skills-section">
+        <ul class="skills-list">
+          <li data-skill="leadership">Volunteer Leadership<div class="skill-explanation"></div></li>
+          <li data-skill="support">Support<div class="skill-explanation"></div></li>
+          <li data-skill="m365">Office 365 (M365)<div class="skill-explanation"></div></li>
+          <li data-skill="teams">Teams<div class="skill-explanation"></div></li>
+          <li data-skill="client">Client Tools<div class="skill-explanation"></div></li>
+          <li data-skill="onboarding">Onboarding & Documentation<div class="skill-explanation"></div></li>
+          <li data-skill="shipping">Shipping & Handling<div class="skill-explanation"></div></li>
+          <li data-skill="hardware">Windows & Hardware<div class="skill-explanation"></div></li>
+        </ul>
+      </div>
+
+      <h2>Professional Background</h2>
+      <p>
+        I began my career through volunteering, which shaped my work ethics leadership style and my sense of responsibility. My collaboration with organizations such as UngHolbæk and LUCERNA helped me develop an eye for logistics, people management, and structured planning. Since joining SJF Bank as an IT Supporter, I've supported hundreds of users, managed IT infrastructure, and delivered solutions across the company.
+      </p>
+
+      <h2>Projects & Skills</h2>
+      <div class="project">
+        <strong>IT Support & Operations</strong><br>
+        Hands-on experience with setting up, maintaining, and troubleshooting hardware. Developed internal documentation, improved onboarding workflows, and provided technical support in a fast-paced banking environment.
+      </div>
+      <div class="project">
+        <strong>Volunteer Work & Leadership</strong><br>
+        Led and participated in community-based projects, educational programs, and workshops for youth and young adults. Organized and facilitated large events while managing diverse teams of volunteers, fostering motivation and team spirit.
+      </div>
+      <div class="project">
+        <strong>Technical Expertise</strong><br>
+        Skilled in client support tools, hardware setup, hardware troubleshooting both remote and physical and sending packages. Experienced with M365, Teams, SharePoint, and other collaboration platforms.
+      </div>
+      <div class="project">
+        <strong>Soft Skills</strong><br>
+        Exceptional communicator and team player. Known for being a reliable colleague, quick to adapt, and someone who builds trust through consistency and empathy.
+      </div>
+      <p><a href="https://www.linkedin.com/in/mathias-andersen-885ba3248/">Read more about my journey, certifications, and achievements...</a></p>
+      <p>You can reach me at <a href="mailto:Mathiasca0209@gmail.com">Mathiasca0209@gmail.com</a></p>
+      <h2>Let’s Connect!</h2>
+      <div class="bottom-left-row">
+        <button class="contact-toggle-btn" aria-label="Open contact form">
+          <img src="https://static.vecteezy.com/system/resources/previews/020/964/377/non_2x/gmail-mail-icon-for-web-design-free-png.png" alt="Contact">
+        </button>
+        <a href="https://www.linkedin.com/in/mathias-andersen-885ba3248/" target="_blank" aria-label="LinkedIn">
+          <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn">
+        </a>
+        <a href="https://instagram.com/andersen_creative" target="_blank" aria-label="Instagram">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/2048px-Instagram_icon.png" alt="Instagram">
+        </a>
+      </div>
+    </div>
+
+    <div class="da" style="display:none">
+      <h1>Hej, jeg er Mathias Andersen 👋</h1>
+      <p>
+        Jeg er en passioneret og alsidig IT-supportspecialist med en baggrund, der spænder over både teknisk ekspertise og menneskecentreret problemløsning. Jeg bringer en unik kombination af erfaring fra professionelle roller og omfattende frivilligt arbejde og lederskab. Min styrke ligger i min evne til at bevare roen under pres, lære hurtigt og løbende forbedre arbejdsgange.
+      </p>
+
+      <h2>Mine færdigheder</h2>
+      <div class="skills-section">
+        <ul class="skills-list">
+          <li data-skill="leadership">Frivilligledelse<div class="skill-explanation"></div></li>
+          <li data-skill="support">Support<div class="skill-explanation"></div></li>
+          <li data-skill="m365">Office 365 (M365)<div class="skill-explanation"></div></li>
+          <li data-skill="teams">Teams<div class="skill-explanation"></div></li>
+          <li data-skill="client">Klientværktøjer<div class="skill-explanation"></div></li>
+          <li data-skill="onboarding">Onboarding & Dokumentation<div class="skill-explanation"></div></li>
+          <li data-skill="shipping">Pakkehåndtering<div class="skill-explanation"></div></li>
+          <li data-skill="hardware">Windows & Hardware<div class="skill-explanation"></div></li>
+        </ul>
+      </div>
+
+      <h2>Erhvervserfaring</h2>
+      <p>
+        Jeg startede min karriere gennem frivilligt arbejde, hvilket formede min arbejdsetiske lederstil og min ansvarsfølelse. Mit samarbejde med organisationer som UngHolbæk og LUCERNA hjalp mig med at udvikle et øje for logistik, personaleledelse og struktureret planlægning. Siden jeg kom til SJF Bank som IT-supporter, har jeg supporteret hundredvis af brugere, administreret IT-infrastruktur og leveret løsninger på tværs af virksomheden.
+      </p>
+
+      <h2>Projekter & Kompetencer</h2>
+      <div class="project">
+        <strong>IT-support & drift</strong><br>
+        Praktisk erfaring med opsætning, vedligeholdelse og fejlfinding af hardware. Udviklede intern dokumentation, forbedrede onboarding-arbejdsgange og ydede teknisk support i et travlt bankmiljø.
+      </div>
+      <div class="project">
+        <strong>Frivilligarbejde & ledelse</strong><br>
+        Ledede og deltog i lokalsamfundsbaserede projekter, uddannelsesprogrammer og workshops for unge og unge voksne. Organiserede og faciliterede store arrangementer, samtidig med at jeg ledede forskellige teams af frivillige, fremmede motivation og holdånd.
+      </div>
+      <div class="project">
+        <strong>Teknisk kunnen</strong><br>
+        Dygtig i klientsupportværktøjer, hardwareopsætning, hardwarefejlfinding både eksternt og fysisk samt afsendelse af pakker. Erfaring med M365, Teams, SharePoint og andre samarbejdsplatforme.
+      </div>
+      <div class="project">
+        <strong>Bløde værdier</strong><br>
+        Enestående kommunikator og teamplayer. Kendt for at være en pålidelig kollega, hurtig til at tilpasse sig og en person, der opbygger tillid gennem vedholdenhed og empati.
+      </div>
+      <p><a href="https://www.linkedin.com/in/mathias-andersen-885ba3248/">Læs mere om min rejse, certifikater og resultater...</a></p>
+      <p>Du kan kontakte mig på,  <a href="mailto:mathiasca0209@gmail.com">mathiasca0209@gmail.com</a></p>
+      <h2>Kontakt Mig!</h2>
+      <div class="bottom-left-row">
+        <button class="contact-toggle-btn" aria-label="Åbn kontaktformular">
+          <img src="https://static.vecteezy.com/system/resources/previews/020/964/377/non_2x/gmail-mail-icon-for-web-design-free-png.png" alt="Contact">
+        </button>
+        <a href="https://www.linkedin.com/in/mathias-andersen-885ba3248/" target="_blank" aria-label="LinkedIn">
+          <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn">
+        </a>
+        <a href="https://instagram.com/andersen_creative" target="_blank" aria-label="Instagram">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/2048px-Instagram_icon.png" alt="Instagram">
+        </a>
+      </div>
+    </div>
+
+    <div class="de" style="display:none">
+      <h1>Hallo, ich bin Mathias Andersen 👋</h1>
+      <p>
+        Ich bin ein leidenschaftlicher und vielseitiger IT-Support-Spezialist mit einem Hintergrund, der sowohl technische Expertise als auch menschenzentrierte Problemlösung umfasst. Ich bringe eine einzigartige Kombination aus Erfahrung in professionellen Rollen sowie umfangreicher ehrenamtlicher Arbeit und Führung mit. Meine Stärke liegt in meiner Fähigkeit, unter Druck ruhig zu bleiben, schnell zu lernen und Arbeitsabläufe kontinuierlich zu verbessern.
+      </p>
+
+      <h2>Meine Fähigkeiten</h2>
+      <div class="skills-section">
+        <ul class="skills-list">
+          <li data-skill="leadership">Ehrenamtliche Führung<div class="skill-explanation"></div></li>
+          <li data-skill="support">Support<div class="skill-explanation"></div></li>
+          <li data-skill="m365">Office 365 (M365)<div class="skill-explanation"></div></li>
+          <li data-skill="teams">Teams<div class="skill-explanation"></div></li>
+          <li data-skill="client">Client-Tools<div class="skill-explanation"></div></li>
+          <li data-skill="onboarding">Onboarding & Dokumentation<div class="skill-explanation"></div></li>
+          <li data-skill="shipping">Versand & Logistik<div class="skill-explanation"></div></li>
+          <li data-skill="hardware">Windows & Hardware<div class="skill-explanation"></div></li>
+        </ul>
+      </div>
+
+      <h2>Berufserfahrung</h2>
+      <p>
+        Ich begann meine Karriere durch ehrenamtliche Arbeit, die meinen Arbeitsstil und mein Verantwortungsbewusstsein prägte. Die Zusammenarbeit mit Organisationen wie UngHolbæk und LUCERNA half mir, ein Auge für Logistik, Personalmanagement und strukturierte Planung zu entwickeln. Seit meinem Einstieg bei der SJF Bank als IT-Supporter habe ich Hunderte von Nutzern unterstützt, IT-Infrastruktur verwaltet und unternehmensweite Lösungen bereitgestellt.
+      </p>
+
+      <h2>Projekte & Kompetenzen</h2>
+      <div class="project">
+        <strong>IT-Support & Betrieb</strong><br>
+        Praktische Erfahrung in der Einrichtung, Wartung und Fehlerbehebung von Hardware. Entwicklung interner Dokumentation, Verbesserung von Onboarding-Prozessen und technische Unterstützung in einem schnelllebigen Bankenumfeld.
+      </div>
+      <div class="project">
+        <strong>Ehrenamt & Führung</strong><br>
+        Leitung und Teilnahme an gemeinschaftsbasierten Projekten, Bildungsprogrammen und Workshops für Jugendliche und junge Erwachsene. Organisation und Durchführung großer Veranstaltungen sowie Führung verschiedener Teams von Freiwilligen, Förderung von Motivation und Teamgeist.
+      </div>
+      <div class="project">
+        <strong>Technische Fähigkeiten</strong><br>
+        Versiert im Umgang mit Support-Tools, Hardware-Einrichtung, Fehlerbehebung (remote und vor Ort) sowie Versand. Erfahrung mit M365, Teams, SharePoint und anderen Kollaborationsplattformen.
+      </div>
+      <div class="project">
+        <strong>Soziale Kompetenzen</strong><br>
+        Hervorragender Kommunikator und Teamplayer. Bekannt dafür, ein verlässlicher Kollege zu sein, sich schnell anzupassen und durch Beständigkeit und Empathie Vertrauen aufzubauen.
+      </div>
+      <p><a href="https://www.linkedin.com/in/mathias-andersen-885ba3248/">Mehr über meinen Werdegang, Zertifikate und Erfolge...</a></p>
+      <p>Sie können mich erreichen unter <a href="mailto:mathiasca0209@gmail.com">mathiasca0209@gmail.com</a></p>
+      <h2>Kontaktieren Sie mich!</h2>
+      <div class="bottom-left-row">
+        <button class="contact-toggle-btn" aria-label="Kontaktformular öffnen">
+          <img src="https://static.vecteezy.com/system/resources/previews/020/964/377/non_2x/gmail-mail-icon-for-web-design-free-png.png" alt="Contact">
+        </button>
+        <a href="https://www.linkedin.com/in/mathias-andersen-885ba3248/" target="_blank" aria-label="LinkedIn">
+          <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn">
+        </a>
+        <a href="https://instagram.com/andersen_creative" target="_blank" aria-label="Instagram">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/2048px-Instagram_icon.png" alt="Instagram">
+        </a>
+      </div>
+    </div>
+
+  </div> <!-- end .container -->
+
+  <div class="contact-box" id="contactBox">
+    <button class="close-btn" aria-label="Luk">&times;</button>
+    <h3 id="contact-title">Send mig en besked</h3>
+    <form action="https://formspree.io/f/xjkrjrjv" method="POST">
+      <label for="contact-name" id="label-name">Navn:</label>
+      <input type="text" id="contact-name" name="Navn" required>
+      <label for="contact-email" id="label-email">Email:</label>
+      <input type="email" id="contact-email" name="Email" required>
+      <label for="contact-message" id="label-message">Besked:</label>
+      <textarea id="contact-message" name="Besked" required></textarea>
+      <button type="submit" id="contact-send">Send</button>
+    </form>
+  </div>
+
+  <script>
+    function toggleContactBox() {
+      var box = document.getElementById('contactBox');
+      box.classList.toggle('active');
+      if (box.classList.contains('active')) {
+        box.style.zIndex = 99999;
+        // Focus the first input or textarea
+        var firstField = box.querySelector('input, textarea');
+        if (firstField) firstField.focus();
+      }
+    }
+    // Language switching for contact form
+    const contactLang = {
+      da: {
+        title: 'Send mig en besked',
+        name: 'Navn:',
+        email: 'Email:',
+        message: 'Besked:',
+        send: 'Send'
+      },
+      en: {
+        title: 'Send me a message',
+        name: 'Name:',
+        email: 'Email:',
+        message: 'Message:',
+        send: 'Send'
+      },
+      de: {
+        title: 'Schreib mir eine Nachricht',
+        name: 'Name:',
+        email: 'E-Mail:',
+        message: 'Nachricht:',
+        send: 'Senden'
+      }
+    };
+    function setContactLang(lang) {
+      document.getElementById('contact-title').textContent = contactLang[lang].title;
+      document.getElementById('label-name').textContent = contactLang[lang].name;
+      document.getElementById('label-email').textContent = contactLang[lang].email;
+      document.getElementById('label-message').textContent = contactLang[lang].message;
+      document.getElementById('contact-send').textContent = contactLang[lang].send;
+    }
+    // Patch switchLanguage to also update contact form
+    const origSwitchLanguage = window.switchLanguage;
+    window.switchLanguage = function(lang) {
+      origSwitchLanguage(lang);
+      setContactLang(lang);
+      attachContactBtnListeners();
+    };
+    // Set initial contact form language
+    setContactLang('da');
+    // Attach event listeners to all contact-toggle-btn buttons and close button
+    function attachContactBtnListeners() {
+      document.querySelectorAll('.contact-toggle-btn').forEach(btn => {
+        btn.removeEventListener('click', toggleContactBox);
+        btn.addEventListener('click', toggleContactBox);
+      });
+      var closeBtn = document.querySelector('.contact-box .close-btn');
+      if (closeBtn) {
+        closeBtn.removeEventListener('click', toggleContactBox);
+        closeBtn.addEventListener('click', toggleContactBox);
+      }
+    }
+    // Attach on load
+    window.addEventListener('DOMContentLoaded', attachContactBtnListeners);
+    // Close contact box when clicking outside
+    document.addEventListener('mousedown', function(event) {
+      var box = document.getElementById('contactBox');
+      if (box.classList.contains('active')) {
+        // If click is outside the box and not on a contact-toggle-btn
+        if (!box.contains(event.target) && !event.target.closest('.contact-toggle-btn')) {
+          toggleContactBox();
+        }
+      }
+    });
+  </script>
+</body>
+</html>
